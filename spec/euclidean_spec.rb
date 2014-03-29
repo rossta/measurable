@@ -1,3 +1,5 @@
+require 'measurable/euclidean_c'
+
 describe "Euclidean" do
 
   before :all do
@@ -6,32 +8,32 @@ describe "Euclidean" do
     @w = [4, 5, 6]
   end
 
-  context "Distance" do
+  shared_examples_for "Distance" do
     it "accepts two arguments" do
-      expect { Measurable.euclidean(@u, @v) }.to_not raise_error
-      expect { Measurable.euclidean(@u, @v, @w) }.to raise_error(ArgumentError)
+      expect { Measurable.send(distance, @u, @v) }.to_not raise_error
+      expect { Measurable.send(distance, @u, @v, @w) }.to raise_error(ArgumentError)
     end
 
     it "accepts one argument and returns the vector's norm" do
       # Remember that 3^2 + 4^2 = 5^2.
-      Measurable.euclidean([3, 4]).should == 5
+      Measurable.send(distance, [3, 4]).should == 5
     end
 
     it "should be symmetric" do
-      Measurable.euclidean(@u, @v).should == Measurable.euclidean(@v, @u)
+      Measurable.send(distance, @u, @v).should == Measurable.send(distance, @v, @u)
     end
 
     it "should return the correct value" do
-      Measurable.euclidean(@u, @u).should == 0
-      Measurable.euclidean(@u, @v).should == 1
+      Measurable.send(distance, @u, @u).should == 0
+      Measurable.send(distance, @u, @v).should == 1
     end
 
     it "shouldn't work with vectors of different length" do
-      expect { Measurable.euclidean(@u, [2, 2, 2, 2]) }.to raise_error(ArgumentError)
+      expect { Measurable.send(distance, @u, [2, 2, 2, 2]) }.to raise_error(ArgumentError)
     end
   end
 
-  context "Squared Distance" do
+  shared_examples_for "Squared Distance" do
     it "accepts two arguments" do
       expect { Measurable.euclidean_squared(@u, @v) }.to_not raise_error
       expect { Measurable.euclidean_squared(@u, @v, @w) }.to raise_error(ArgumentError)
@@ -57,5 +59,17 @@ describe "Euclidean" do
     it "shouldn't work with vectors of different length" do
       expect { Measurable.euclidean_squared(@u, [2, 2, 2, 2]) }.to raise_error(ArgumentError)
     end
+  end
+
+  context "euclidean" do
+    let(:distance) { :euclidean }
+
+    it_should_behave_like "Distance"
+  end
+
+  context "euclidean_c" do
+    let(:distance) { :euclidean_c }
+
+    it_should_behave_like "Distance"
   end
 end
