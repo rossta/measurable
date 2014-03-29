@@ -4,5 +4,6 @@ rvm:
   - 2.0
   - 2.1
   - rbx
+before_script: bundle exec rake compile
 # uncomment this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
