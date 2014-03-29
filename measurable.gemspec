@@ -28,4 +28,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rdoc', '~> 4.1'
   gem.add_development_dependency 'rspec', '~> 2.1'
   gem.add_development_dependency 'rdoc-generator-fivefish'
+  gem.add_development_dependency 'rake-compiler'
 end
