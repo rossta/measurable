@@ -13,4 +13,7 @@ namespace :bench do
       ruby "benchmarks/#{feature}.rb"
     end
   end
+
 end
+
+task bench: 'bench:all'
