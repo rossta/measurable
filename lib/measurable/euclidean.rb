@@ -1,6 +1,4 @@
 module Measurable
-  extend self
-
   # call-seq:
   #     euclidean(u) -> Float
   #     euclidean(u, v) -> Float
