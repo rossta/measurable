@@ -1,6 +1,6 @@
 pkg
 tmp/*
 benchmarks/*
-lib/*.bundle
+*.bundle
 html/
 Gemfile.lock
