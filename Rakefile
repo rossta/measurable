@@ -34,10 +34,5 @@ task :console do
   IRB.start
 end
 
-# Compile task.
-# Rake::ExtensionTask.new do |ext|
-#     ext.name = 'measurable'
-#     ext.ext_dir = 'ext/measurable'
-#     ext.lib_dir = 'lib/'
-#     ext.source_pattern = "**/*.{c, cpp, h}"
-# end
+load 'tasks/compile.rake'
+load 'tasks/benchmark.rake'
